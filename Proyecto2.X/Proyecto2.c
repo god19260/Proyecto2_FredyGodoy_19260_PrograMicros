@@ -48,6 +48,8 @@ char Boton;
 char B_flag;
 char Adelante;
 char Atras;
+char Lock;
+char WD = 0; //4WD
 //------------------------------------------------------------------------------
 //***************************** Prototipos *************************************
 void Botones(void);
@@ -61,20 +63,25 @@ void __interrupt() isr (void){
     // Interrupción del Puerto B
     if (RBIF == 1){ 
         
-        B_flag = 1;
-        if (RB0 == 0){
+        if (PORTB == 0b11111110){ // RB0 == 0
             Boton = 0; //Adelante
-        }else if(RB1 == 0){
+            B_flag = 1;
+        }else if(PORTB == 0b11111101){ // RB1 == 0
             Boton = 1; // Atras
-            RD6 = 1;
-        }else if(RB2 == 0){
+            B_flag = 1;
+        }else if(PORTB == 0b11111011){ // RB2 == 0
             Boton = 2; // Neutro
-            
-        }else if(RB3 == 0){ 
+            B_flag = 1;
+        }else if(PORTB == 0b11110111){ // RB3 == 0 
             Boton = 3; // Luces
-        }else if(RB4 == 0){ //RB4 == 0
+            B_flag = 1;
+        }else if(PORTB == 0b11101111){ //RB4 == 0
             Boton = 4; // 4WD
-        }    
+            B_flag = 1;
+        }else if(PORTB == 0b11011111){ //RB5 == 0
+            Boton = 5; // Lock
+            B_flag = 1;
+        }      
         RBIF = 0; 
     }// Fin de interrupción del PORTB
     
@@ -84,9 +91,10 @@ void __interrupt() isr (void){
         ADIF = 0;
         if (ADCON0bits.CHS == 0){
             Valor_CCP1 = ADRESH/2;
-            ADCON0bits.CHS = 0;
+            ADCON0bits.CHS = 1;
         } else if(ADCON0bits.CHS == 1){ // CCP2
-            ADCON0bits.CHS = 2;
+            Valor_CCP2 = ADRESH/2;
+            ADCON0bits.CHS = 0;            
         }
         else{
             ADCON0bits.CHS = 0;
@@ -137,15 +145,25 @@ void main(void) {
     OPTION_REGbits.nRBPU = 0;
     WPUBbits.WPUB0=1;
     WPUBbits.WPUB1=1;
+    WPUBbits.WPUB2=1;
+    WPUBbits.WPUB3=1;
+    WPUBbits.WPUB4=1;
+    WPUBbits.WPUB5=1;
+    WPUBbits.WPUB6=1;
     // Activación Interrup on change
     IOCB0 = 1;
     IOCB1 = 1;
+    IOCB2 = 1;
+    IOCB3 = 1;
+    IOCB4 = 1;
+    IOCB5 = 1;
+    IOCB6 = 1;
     INTCONbits.RBIF = 0;        //Limpiar bandera para puerto B
     INTCONbits.RBIE = 1;        //Interrupción puerto B
     
     
     // Configurar puertos
-    ANSEL  = 0b00000111;
+    ANSEL  = 0b00001111;
     ANSELH = 0x0;
     TRISA  = 0xff; // Puerto para entradas 
     TRISC  = 0;  // Definir el puerto C como salida
@@ -157,7 +175,9 @@ void main(void) {
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
-    
+    Boton = 2;
+    B_flag = 0;
+    Lock = 1;
     //loop principal
     while(1){  
         Motores();
@@ -172,40 +192,58 @@ void main(void) {
     } // fin loop principal while 
 } // fin main
 void Motores(void){
-    CCPR1L = Valor_CCP1;
-    CCPR2L = 0x00;
+    if(WD == 0){
+        CCPR1L = 0;
+        CCPR2L = Valor_CCP2;
+    }else if(Lock == 1 && WD == 1){
+        CCPR1L = Valor_CCP2;
+        CCPR2L = Valor_CCP2;
+    }else if((Lock == 0 && WD == 1)){
+        CCPR1L = Valor_CCP1;
+        CCPR2L = Valor_CCP2;    
+    }
 }
 
 void Botones(void){
     if (B_flag == 1){
-        if(Boton == 0){ // Adelante
+        if(Boton == 0 && RB0 == 1){ // Adelante
             Adelante = 1;
             Atras = 0;
+            B_flag = 0;
         }else if(Boton == 1){ // Atras
             Adelante = 0;
             Atras = 1;
+            B_flag = 0;
         }else if(Boton == 2){ // Neutro
-            RD5 = 1;
             Adelante = 0;
             Atras = 0;
+            B_flag = 0;
         }else if(Boton == 3){ // Luces
-            
+            B_flag = 0;
         }else if(Boton == 4){ // 4WD
-            
+            WD = 1;
+            B_flag = 0;
+        }else if(Boton == 5){ // Lock
+            if(Lock == 1){
+                Lock = 0;
+            }else{
+                Lock = 1;
+            }
+            B_flag = 0;
         }
-        B_flag = 0;
+        
     }
 }  
 
 void Motores_Adelante(void){
     RD0 = RC2;
-    RD2 = RD0;
+    RD2 = RC1;
     RD1=0;
     RD3=RD1;
 }
 void Motores_Atras(void){
     RD1 = RC2;
-    RD3 = RD1;
+    RD3 = RC1;
     RD0 = 0;
     RD2 = RD0;
 }

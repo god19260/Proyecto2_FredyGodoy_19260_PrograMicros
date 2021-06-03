@@ -13,19 +13,19 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"60 D:\UVG\Ciclo_1__2021\Progra_Micros\Proyecto2_FredyGodoy_19260_PrograMicros\Proyecto2.X\Proyecto2.c
+"62 D:\UVG\Ciclo_1__2021\Progra_Micros\Proyecto2_FredyGodoy_19260_PrograMicros\Proyecto2.X\Proyecto2.c
 [v _isr isr `II(v  1 e 1 0 ]
-"99
+"107
 [v _main main `(v  1 e 1 0 ]
-"174
+"194
 [v _Motores Motores `(v  1 e 1 0 ]
-"179
+"207
 [v _Botones Botones `(v  1 e 1 0 ]
-"200
+"238
 [v _Motores_Adelante Motores_Adelante `(v  1 e 1 0 ]
-"206
+"244
 [v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
-"213
+"251
 [v _Motores_Neutro Motores_Neutro `(v  1 e 1 0 ]
 "228 D:/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
@@ -54,7 +54,7 @@
 ]
 [u S304 . 1 `S290 1 . 1 0 `S299 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES304  1 e 1 @11 ]
-[s S155 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S150 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -63,14 +63,14 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S163 . 1 `S155 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES163  1 e 1 @12 ]
-[s S174 . 1 `uc 1 T2CKPS 1 0 :2:0 
+[u S158 . 1 `S150 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES158  1 e 1 @12 ]
+[s S169 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 TOUTPS 1 0 :4:3 
 ]
 "793
-[s S178 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+[s S173 . 1 `uc 1 T2CKPS0 1 0 :1:0 
 `uc 1 T2CKPS1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 TOUTPS0 1 0 :1:3 
@@ -78,16 +78,16 @@
 `uc 1 TOUTPS2 1 0 :1:5 
 `uc 1 TOUTPS3 1 0 :1:6 
 ]
-[u S186 . 1 `S174 1 . 1 0 `S178 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES186  1 e 1 @18 ]
+[u S181 . 1 `S169 1 . 1 0 `S173 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES181  1 e 1 @18 ]
 "927
 [v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
-[s S88 . 1 `uc 1 CCP1M 1 0 :4:0 
+[s S83 . 1 `uc 1 CCP1M 1 0 :4:0 
 `uc 1 DC1B 1 0 :2:4 
 `uc 1 P1M 1 0 :2:6 
 ]
 "968
-[s S92 . 1 `uc 1 CCP1M0 1 0 :1:0 
+[s S87 . 1 `uc 1 CCP1M0 1 0 :1:0 
 `uc 1 CCP1M1 1 0 :1:1 
 `uc 1 CCP1M2 1 0 :1:2 
 `uc 1 CCP1M3 1 0 :1:3 
@@ -96,37 +96,37 @@
 `uc 1 P1M0 1 0 :1:6 
 `uc 1 P1M1 1 0 :1:7 
 ]
-[s S101 . 1 `uc 1 . 1 0 :4:0 
+[s S96 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CCP1Y 1 0 :1:4 
 `uc 1 CCP1X 1 0 :1:5 
 ]
-[u S105 . 1 `S88 1 . 1 0 `S92 1 . 1 0 `S101 1 . 1 0 ]
-[v _CCP1CONbits CCP1CONbits `VES105  1 e 1 @23 ]
+[u S100 . 1 `S83 1 . 1 0 `S87 1 . 1 0 `S96 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES100  1 e 1 @23 ]
 "1154
 [v _CCPR2L CCPR2L `VEuc  1 e 1 @27 ]
-[s S127 . 1 `uc 1 CCP2M 1 0 :4:0 
+[s S122 . 1 `uc 1 CCP2M 1 0 :4:0 
 `uc 1 DC2B0 1 0 :1:4 
 `uc 1 DC2B1 1 0 :1:5 
 ]
 "1188
-[s S131 . 1 `uc 1 CCP2M0 1 0 :1:0 
+[s S126 . 1 `uc 1 CCP2M0 1 0 :1:0 
 `uc 1 CCP2M1 1 0 :1:1 
 `uc 1 CCP2M2 1 0 :1:2 
 `uc 1 CCP2M3 1 0 :1:3 
 `uc 1 CCP2Y 1 0 :1:4 
 `uc 1 CCP2X 1 0 :1:5 
 ]
-[u S138 . 1 `S127 1 . 1 0 `S131 1 . 1 0 ]
-[v _CCP2CONbits CCP2CONbits `VES138  1 e 1 @29 ]
+[u S133 . 1 `S122 1 . 1 0 `S126 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES133  1 e 1 @29 ]
 "1238
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-[s S30 . 1 `uc 1 ADON 1 0 :1:0 
+[s S25 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S35 . 1 `uc 1 . 1 0 :1:0 
+[s S30 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -135,15 +135,15 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S44 . 1 `uc 1 . 1 0 :1:0 
+[s S39 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S47 . 1 `uc 1 . 1 0 :1:0 
+[s S42 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S50 . 1 `S30 1 . 1 0 `S35 1 . 1 0 `S44 1 . 1 0 `S47 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES50  1 e 1 @31 ]
-[s S236 . 1 `uc 1 PS 1 0 :3:0 
+[u S45 . 1 `S25 1 . 1 0 `S30 1 . 1 0 `S39 1 . 1 0 `S42 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES45  1 e 1 @31 ]
+[s S231 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -151,12 +151,12 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S243 . 1 `uc 1 PS0 1 0 :1:0 
+[s S238 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S247 . 1 `S236 1 . 1 0 `S243 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES247  1 e 1 @129 ]
+[u S242 . 1 `S231 1 . 1 0 `S238 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES242  1 e 1 @129 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1540
@@ -165,7 +165,7 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S202 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S197 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -174,14 +174,14 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S210 . 1 `S202 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES210  1 e 1 @140 ]
+[u S205 . 1 `S197 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES205  1 e 1 @140 ]
 "2041
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
-[s S262 . 1 `uc 1 WPUB 1 0 :8:0 
+[s S257 . 1 `uc 1 WPUB 1 0 :8:0 
 ]
 "2366
-[s S264 . 1 `uc 1 WPUB0 1 0 :1:0 
+[s S259 . 1 `uc 1 WPUB0 1 0 :1:0 
 `uc 1 WPUB1 1 0 :1:1 
 `uc 1 WPUB2 1 0 :1:2 
 `uc 1 WPUB3 1 0 :1:3 
@@ -190,17 +190,17 @@
 `uc 1 WPUB6 1 0 :1:6 
 `uc 1 WPUB7 1 0 :1:7 
 ]
-[u S273 . 1 `S262 1 . 1 0 `S264 1 . 1 0 ]
-[v _WPUBbits WPUBbits `VES273  1 e 1 @149 ]
-[s S221 . 1 `uc 1 . 1 0 :4:0 
+[u S268 . 1 `S257 1 . 1 0 `S259 1 . 1 0 ]
+[v _WPUBbits WPUBbits `VES268  1 e 1 @149 ]
+[s S216 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2991
-[u S227 . 1 `S221 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES227  1 e 1 @159 ]
+[u S222 . 1 `S216 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES222  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -211,6 +211,16 @@
 [v _IOCB0 IOCB0 `VEb  1 e 0 @1200 ]
 "3935
 [v _IOCB1 IOCB1 `VEb  1 e 0 @1201 ]
+"3938
+[v _IOCB2 IOCB2 `VEb  1 e 0 @1202 ]
+"3941
+[v _IOCB3 IOCB3 `VEb  1 e 0 @1203 ]
+"3944
+[v _IOCB4 IOCB4 `VEb  1 e 0 @1204 ]
+"3947
+[v _IOCB5 IOCB5 `VEb  1 e 0 @1205 ]
+"3950
+[v _IOCB6 IOCB6 `VEb  1 e 0 @1206 ]
 "3956
 [v _IRCF0 IRCF0 `VEb  1 e 0 @1148 ]
 "3959
@@ -219,16 +229,10 @@
 [v _IRCF2 IRCF2 `VEb  1 e 0 @1150 ]
 "4103
 [v _RB0 RB0 `VEb  1 e 0 @48 ]
-"4106
-[v _RB1 RB1 `VEb  1 e 0 @49 ]
-"4109
-[v _RB2 RB2 `VEb  1 e 0 @50 ]
-"4112
-[v _RB3 RB3 `VEb  1 e 0 @51 ]
-"4115
-[v _RB4 RB4 `VEb  1 e 0 @52 ]
 "4130
 [v _RBIF RBIF `VEb  1 e 0 @88 ]
+"4136
+[v _RC1 RC1 `VEb  1 e 0 @57 ]
 "4139
 [v _RC2 RC2 `VEb  1 e 0 @58 ]
 "4181
@@ -239,12 +243,10 @@
 [v _RD2 RD2 `VEb  1 e 0 @66 ]
 "4190
 [v _RD3 RD3 `VEb  1 e 0 @67 ]
-"4196
-[v _RD5 RD5 `VEb  1 e 0 @69 ]
-"4199
-[v _RD6 RD6 `VEb  1 e 0 @70 ]
 "45 D:\UVG\Ciclo_1__2021\Progra_Micros\Proyecto2_FredyGodoy_19260_PrograMicros\Proyecto2.X\Proyecto2.c
 [v _Valor_CCP1 Valor_CCP1 `uc  1 e 1 0 ]
+"46
+[v _Valor_CCP2 Valor_CCP2 `uc  1 e 1 0 ]
 "47
 [v _Boton Boton `uc  1 e 1 0 ]
 "48
@@ -253,40 +255,44 @@
 [v _Adelante Adelante `uc  1 e 1 0 ]
 "50
 [v _Atras Atras `uc  1 e 1 0 ]
-"99
+"51
+[v _Lock Lock `uc  1 e 1 0 ]
+"52
+[v _WD WD `uc  1 e 1 0 ]
+"107
 [v _main main `(v  1 e 1 0 ]
 {
-"173
+"193
 } 0
-"213
+"251
 [v _Motores_Neutro Motores_Neutro `(v  1 e 1 0 ]
 {
-"218
+"256
 } 0
-"206
+"244
 [v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
 {
-"211
+"249
 } 0
-"200
+"238
 [v _Motores_Adelante Motores_Adelante `(v  1 e 1 0 ]
+{
+"243
+} 0
+"194
+[v _Motores Motores `(v  1 e 1 0 ]
 {
 "205
 } 0
-"174
-[v _Motores Motores `(v  1 e 1 0 ]
-{
-"177
-} 0
-"179
+"207
 [v _Botones Botones `(v  1 e 1 0 ]
 {
-"198
+"236
 } 0
-"60
+"62
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"97
+"105
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c90\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
