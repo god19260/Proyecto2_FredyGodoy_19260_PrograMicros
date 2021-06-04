@@ -13,7 +13,7 @@
 // 'C' source line config statements
 
 // CONFIG1
-#pragma config FOSC = INTRC_CLKOUT// Oscillator Selection bits (RC oscillator: 
+#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (RC oscillator: 
                 // CLKOUT function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT enabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
@@ -54,6 +54,7 @@ char Contador_Servo1=0;
 char Contador_Servo2=0;
 char Direccion = 0;
 char M_Luces;
+char t;
 //------------------------------------------------------------------------------
 //***************************** Prototipos *************************************
 void Botones(void);
@@ -62,9 +63,48 @@ void Motores_Atras(void);
 void Motores_Neutro(void);
 void Motores(void);
 void Servo_1(void);
+void Servo_2(void);
 //------------------------------------------------------------------------------
 //*************************** Interrupciones ***********************************
 void __interrupt() isr (void){    
+    // Interrupcion del timer0
+    if (T0IF == 1){ 
+        T0IF = 0;
+        TMR0 = 255; 
+        
+        if(Contador_Servo1 <= Direccion){
+            RD6 = 1;
+            RD7 = 1;
+        }else {
+           RD6 = 0;
+           RD7 = 0;
+        }
+
+        if(Contador_Servo1 >= 20){
+            Contador_Servo1 = 0;
+        }
+        Contador_Servo1++;
+    } // Fin de interrupción timer0
+    
+    // Interrupcion del ADC module
+    if (ADIF == 1){
+        ADIF = 0;
+        if (ADCON0bits.CHS == 0){ // CCP1
+            Valor_CCP1 = ADRESH/2;
+            ADCON0bits.CHS = 1;
+        } else if(ADCON0bits.CHS == 1){ // CCP2
+            Valor_CCP2 = ADRESH/2;
+            ADCON0bits.CHS = 2;            
+        } else if(ADCON0bits.CHS == 2){
+            Direccion = ADRESH;
+            Direccion = Direccion*6/255;
+            ADCON0bits.CHS = 0;        
+        } 
+        
+        //M_Luces = M_Luces*19/255;
+        __delay_us(50);
+        ADCON0bits.GO = 1; 
+    } // Fin de interrupción del ADC
     // Interrupción del Puerto B
     if (RBIF == 1){ 
         if (PORTB == 0b11111110){ // RB0 == 0
@@ -90,44 +130,17 @@ void __interrupt() isr (void){
     }// Fin de interrupción del PORTB
     // Interrupcion Serial
     if (RCIF == 1){
-        RCIF = 0; 
-        RA0 = 1;        
+        RCIF = 0;         
         //TXREG --> Transmitir datos
         if (RCREG == '1'){ // 1 en hexa
             TXREG = Direccion;
         } else if(RCREG == '2'){
-            
+            TXREG = M_Luces;
         }else if(RCREG == '3'){
             
         }     
     } // Interrupcion Serial
-    // Interrupcion del timer0
-    if (T0IF == 1){
-        T0IF = 0;
-        TMR0 = 225;  
-        Contador_Servo1++;   
-    } // Fin de interrupción timer0
     
-    // Interrupcion del ADC module
-    if (ADIF == 1){
-        ADIF = 0;
-        if (ADCON0bits.CHS == 0){ // CCP1
-            Valor_CCP1 = ADRESH/2;
-            ADCON0bits.CHS = 1;
-        } else if(ADCON0bits.CHS == 1){ // CCP2
-            Valor_CCP2 = ADRESH/2;
-            ADCON0bits.CHS = 2;            
-        } else if(ADCON0bits.CHS == 2){
-            Direccion = (ADRESH*19)/255;
-            ADCON0bits.CHS = 0;        
-        } else if(ADCON0bits.CHS == 3){ 
-            M_Luces = ADRESH;
-            ADCON0bits.CHS = 0;            
-        }
-           
-        __delay_us(50);
-        ADCON0bits.GO = 1; 
-    } // Fin de interrupción del ADC
 }    
 
 void main(void) {
@@ -137,13 +150,13 @@ void main(void) {
     IRCF2 = 1;       // 8 Mhz   
     
     // Configurar Timer0
-    PS0  = 1;
-    PS1  = 0;
+    PS0  = 0;
+    PS1  = 1;
     PS2  = 1;         // Prescaler de 64
     T0CS = 0;
     PSA  = 0;
     INTCON = 0b11101000;
-    TMR0 = 225;
+    TMR0 = 255;
     
     // Configuración de Asynchronous TRANSMITTER
     TXEN = 1;
@@ -223,7 +236,9 @@ void main(void) {
     Lock = 1;
     //loop principal
     while(1){  
-        Servo_1();
+        //Servo_1();
+        //Servo_2();
+        
         Motores();
         Botones();
         if (Adelante == 1 && Atras == 0){
@@ -300,11 +315,17 @@ void Motores_Neutro(void){
 }
 
 void Servo_1(void){
-   if(Contador_Servo1 == Direccion){
-        RD6 = 0;
-    }else if(Contador_Servo1 >= 19){ //30
-        RD6 = 1;
-        Contador_Servo1 = 0;
-    }
-   
+    
 }
+
+/*
+void Servo_2(void){
+   if(Contador_Servo2 == 0){
+        RD7 = 0;
+    }else if(Contador_Servo2 >= 38){ 
+        RD7 = 1;
+        Contador_Servo2 = 0;
+    }
+}
+ */
+ 

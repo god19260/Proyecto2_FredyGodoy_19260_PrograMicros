@@ -2503,7 +2503,7 @@ extern __bank0 __bit __timeout;
 
 
 
-#pragma config FOSC = INTRC_CLKOUT
+#pragma config FOSC = INTRC_NOCLKOUT
 
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2544,6 +2544,7 @@ char Contador_Servo1=0;
 char Contador_Servo2=0;
 char Direccion = 0;
 char M_Luces;
+char t;
 
 
 void Botones(void);
@@ -2552,9 +2553,48 @@ void Motores_Atras(void);
 void Motores_Neutro(void);
 void Motores(void);
 void Servo_1(void);
+void Servo_2(void);
 
 
 void __attribute__((picinterrupt(("")))) isr (void){
+
+    if (T0IF == 1){
+        T0IF = 0;
+        TMR0 = 255;
+
+        if(Contador_Servo1 <= Direccion){
+            RD6 = 1;
+            RD7 = 1;
+        }else {
+           RD6 = 0;
+           RD7 = 0;
+        }
+
+        if(Contador_Servo1 >= 20){
+            Contador_Servo1 = 0;
+        }
+        Contador_Servo1++;
+    }
+
+
+    if (ADIF == 1){
+        ADIF = 0;
+        if (ADCON0bits.CHS == 0){
+            Valor_CCP1 = ADRESH/2;
+            ADCON0bits.CHS = 1;
+        } else if(ADCON0bits.CHS == 1){
+            Valor_CCP2 = ADRESH/2;
+            ADCON0bits.CHS = 2;
+        } else if(ADCON0bits.CHS == 2){
+            Direccion = ADRESH;
+            Direccion = Direccion*6/255;
+            ADCON0bits.CHS = 0;
+        }
+
+
+        _delay((unsigned long)((50)*(8000000/4000000.0)));
+        ADCON0bits.GO = 1;
+    }
 
     if (RBIF == 1){
         if (PORTB == 0b11111110){
@@ -2581,43 +2621,16 @@ void __attribute__((picinterrupt(("")))) isr (void){
 
     if (RCIF == 1){
         RCIF = 0;
-        RA0 = 1;
 
         if (RCREG == '1'){
             TXREG = Direccion;
         } else if(RCREG == '2'){
-
+            TXREG = M_Luces;
         }else if(RCREG == '3'){
 
         }
     }
 
-    if (T0IF == 1){
-        T0IF = 0;
-        TMR0 = 225;
-        Contador_Servo1++;
-    }
-
-
-    if (ADIF == 1){
-        ADIF = 0;
-        if (ADCON0bits.CHS == 0){
-            Valor_CCP1 = ADRESH/2;
-            ADCON0bits.CHS = 1;
-        } else if(ADCON0bits.CHS == 1){
-            Valor_CCP2 = ADRESH/2;
-            ADCON0bits.CHS = 2;
-        } else if(ADCON0bits.CHS == 2){
-            Direccion = (ADRESH*19)/255;
-            ADCON0bits.CHS = 0;
-        } else if(ADCON0bits.CHS == 3){
-            M_Luces = ADRESH;
-            ADCON0bits.CHS = 0;
-        }
-
-        _delay((unsigned long)((50)*(8000000/4000000.0)));
-        ADCON0bits.GO = 1;
-    }
 }
 
 void main(void) {
@@ -2627,13 +2640,13 @@ void main(void) {
     IRCF2 = 1;
 
 
-    PS0 = 1;
-    PS1 = 0;
+    PS0 = 0;
+    PS1 = 1;
     PS2 = 1;
     T0CS = 0;
     PSA = 0;
     INTCON = 0b11101000;
-    TMR0 = 225;
+    TMR0 = 255;
 
 
     TXEN = 1;
@@ -2713,7 +2726,9 @@ void main(void) {
     Lock = 1;
 
     while(1){
-        Servo_1();
+
+
+
         Motores();
         Botones();
         if (Adelante == 1 && Atras == 0){
@@ -2790,11 +2805,5 @@ void Motores_Neutro(void){
 }
 
 void Servo_1(void){
-   if(Contador_Servo1 == Direccion){
-        RD6 = 0;
-    }else if(Contador_Servo1 >= 19){
-        RD6 = 1;
-        Contador_Servo1 = 0;
-    }
 
 }
