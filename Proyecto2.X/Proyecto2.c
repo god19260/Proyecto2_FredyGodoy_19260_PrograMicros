@@ -50,6 +50,10 @@ char Adelante;
 char Atras;
 char Lock;
 char WD = 0; //4WD
+char Contador_Servo1=0;
+char Contador_Servo2=0;
+char Direccion = 0;
+char M_Luces;
 //------------------------------------------------------------------------------
 //***************************** Prototipos *************************************
 void Botones(void);
@@ -57,12 +61,12 @@ void Motores_Adelante(void);
 void Motores_Atras(void);
 void Motores_Neutro(void);
 void Motores(void);
+void Servo_1(void);
 //------------------------------------------------------------------------------
 //*************************** Interrupciones ***********************************
 void __interrupt() isr (void){    
     // Interrupción del Puerto B
     if (RBIF == 1){ 
-        
         if (PORTB == 0b11111110){ // RB0 == 0
             Boton = 0; //Adelante
             B_flag = 1;
@@ -84,21 +88,43 @@ void __interrupt() isr (void){
         }      
         RBIF = 0; 
     }// Fin de interrupción del PORTB
-    
+    // Interrupcion Serial
+    if (RCIF == 1){
+        RCIF = 0; 
+        RA0 = 1;        
+        //TXREG --> Transmitir datos
+        if (RCREG == '1'){ // 1 en hexa
+            TXREG = Direccion;
+        } else if(RCREG == '2'){
+            
+        }else if(RCREG == '3'){
+            
+        }     
+    } // Interrupcion Serial
+    // Interrupcion del timer0
+    if (T0IF == 1){
+        T0IF = 0;
+        TMR0 = 225;  
+        Contador_Servo1++;   
+    } // Fin de interrupción timer0
     
     // Interrupcion del ADC module
     if (ADIF == 1){
         ADIF = 0;
-        if (ADCON0bits.CHS == 0){
+        if (ADCON0bits.CHS == 0){ // CCP1
             Valor_CCP1 = ADRESH/2;
             ADCON0bits.CHS = 1;
         } else if(ADCON0bits.CHS == 1){ // CCP2
             Valor_CCP2 = ADRESH/2;
+            ADCON0bits.CHS = 2;            
+        } else if(ADCON0bits.CHS == 2){
+            Direccion = (ADRESH*19)/255;
+            ADCON0bits.CHS = 0;        
+        } else if(ADCON0bits.CHS == 3){ 
+            M_Luces = ADRESH;
             ADCON0bits.CHS = 0;            
         }
-        else{
-            ADCON0bits.CHS = 0;
-        }   
+           
         __delay_us(50);
         ADCON0bits.GO = 1; 
     } // Fin de interrupción del ADC
@@ -109,8 +135,25 @@ void main(void) {
     IRCF0 = 1;       // Configuración del reloj interno 
     IRCF1 = 1;
     IRCF2 = 1;       // 8 Mhz   
-  
+    
+    // Configurar Timer0
+    PS0  = 1;
+    PS1  = 0;
+    PS2  = 1;         // Prescaler de 64
+    T0CS = 0;
+    PSA  = 0;
     INTCON = 0b11101000;
+    TMR0 = 225;
+    
+    // Configuración de Asynchronous TRANSMITTER
+    TXEN = 1;
+    SYNC = 0;
+    SPEN = 1;
+    // Configuración de Asynchronous RECEIVER
+    CREN = 1;
+    PIE1bits.RCIE = 1;
+    PIR1bits.RCIF = 0;
+    SPBRG=12;  // baudrate 9600 para 8MHz
     
     // Configurar PWM
     PR2 = 249;
@@ -166,7 +209,7 @@ void main(void) {
     ANSEL  = 0b00001111;
     ANSELH = 0x0;
     TRISA  = 0xff; // Puerto para entradas 
-    TRISC  = 0;  // Definir el puerto C como salida
+    TRISC  = 0b10000000;  // Definir el puerto C como salida
     TRISD  = 0;  // Definir el puerto D como salida
     TRISE  = 0;  // Definir el puerto E como salida
     
@@ -180,6 +223,7 @@ void main(void) {
     Lock = 1;
     //loop principal
     while(1){  
+        Servo_1();
         Motores();
         Botones();
         if (Adelante == 1 && Atras == 0){
@@ -238,8 +282,8 @@ void Botones(void){
 void Motores_Adelante(void){
     RD0 = RC2;
     RD2 = RC1;
-    RD1=0;
-    RD3=RD1;
+    RD1 = 0;
+    RD3 = RD1;
 }
 void Motores_Atras(void){
     RD1 = RC2;
@@ -253,4 +297,14 @@ void Motores_Neutro(void){
     RD3 = RD1;
     RD0 = 0;
     RD2 = RD0;
+}
+
+void Servo_1(void){
+   if(Contador_Servo1 == Direccion){
+        RD6 = 0;
+    }else if(Contador_Servo1 >= 19){ //30
+        RD6 = 1;
+        Contador_Servo1 = 0;
+    }
+   
 }
