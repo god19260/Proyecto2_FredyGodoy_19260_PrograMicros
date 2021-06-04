@@ -67,23 +67,31 @@ void Servo_2(void);
 //------------------------------------------------------------------------------
 //*************************** Interrupciones ***********************************
 void __interrupt() isr (void){    
-    // Interrupcion del timer0
+    // Interrupcion del timer0 - Cada 0.5ms
     if (T0IF == 1){ 
         T0IF = 0;
         TMR0 = 255; 
-        
+        // Servo 1
         if(Contador_Servo1 <= Direccion){
-            RD6 = 1;
-            RD7 = 1;
+           RD6 = 1;
         }else {
            RD6 = 0;
-           RD7 = 0;
         }
-
         if(Contador_Servo1 >= 20){
             Contador_Servo1 = 0;
         }
+        
+        //Servo 2
+        if(Contador_Servo2 <= M_Luces){
+           RD7 = 1;
+        }else {
+           RD7 = 0;
+        }
+        if(Contador_Servo2 >= 20){
+            Contador_Servo2 = 0;
+        }
         Contador_Servo1++;
+        Contador_Servo2++;
     } // Fin de interrupción timer0
     
     // Interrupcion del ADC module
@@ -98,10 +106,12 @@ void __interrupt() isr (void){
         } else if(ADCON0bits.CHS == 2){
             Direccion = ADRESH;
             Direccion = Direccion*6/255;
+            ADCON0bits.CHS = 3;        
+        } else if(ADCON0bits.CHS == 3){
+            M_Luces = ADRESH;
+            M_Luces = M_Luces*6/255;
             ADCON0bits.CHS = 0;        
         } 
-        
-        //M_Luces = M_Luces*19/255;
         __delay_us(50);
         ADCON0bits.GO = 1; 
     } // Fin de interrupción del ADC
@@ -139,7 +149,7 @@ void __interrupt() isr (void){
         }else if(RCREG == '3'){
             
         }     
-    } // Interrupcion Serial
+    } // Fin interrupcion Serial
     
 }    
 
@@ -236,9 +246,6 @@ void main(void) {
     Lock = 1;
     //loop principal
     while(1){  
-        //Servo_1();
-        //Servo_2();
-        
         Motores();
         Botones();
         if (Adelante == 1 && Atras == 0){
@@ -314,18 +321,5 @@ void Motores_Neutro(void){
     RD2 = RD0;
 }
 
-void Servo_1(void){
-    
-}
 
-/*
-void Servo_2(void){
-   if(Contador_Servo2 == 0){
-        RD7 = 0;
-    }else if(Contador_Servo2 >= 38){ 
-        RD7 = 1;
-        Contador_Servo2 = 0;
-    }
-}
- */
  

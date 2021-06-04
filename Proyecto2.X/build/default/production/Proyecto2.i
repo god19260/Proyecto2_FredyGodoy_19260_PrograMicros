@@ -2563,17 +2563,25 @@ void __attribute__((picinterrupt(("")))) isr (void){
         TMR0 = 255;
 
         if(Contador_Servo1 <= Direccion){
-            RD6 = 1;
-            RD7 = 1;
+           RD6 = 1;
         }else {
            RD6 = 0;
-           RD7 = 0;
         }
-
         if(Contador_Servo1 >= 20){
             Contador_Servo1 = 0;
         }
+
+
+        if(Contador_Servo2 <= M_Luces){
+           RD7 = 1;
+        }else {
+           RD7 = 0;
+        }
+        if(Contador_Servo2 >= 20){
+            Contador_Servo2 = 0;
+        }
         Contador_Servo1++;
+        Contador_Servo2++;
     }
 
 
@@ -2588,10 +2596,12 @@ void __attribute__((picinterrupt(("")))) isr (void){
         } else if(ADCON0bits.CHS == 2){
             Direccion = ADRESH;
             Direccion = Direccion*6/255;
+            ADCON0bits.CHS = 3;
+        } else if(ADCON0bits.CHS == 3){
+            M_Luces = ADRESH;
+            M_Luces = M_Luces*6/255;
             ADCON0bits.CHS = 0;
         }
-
-
         _delay((unsigned long)((50)*(8000000/4000000.0)));
         ADCON0bits.GO = 1;
     }
@@ -2726,9 +2736,6 @@ void main(void) {
     Lock = 1;
 
     while(1){
-
-
-
         Motores();
         Botones();
         if (Adelante == 1 && Atras == 0){
@@ -2802,8 +2809,4 @@ void Motores_Neutro(void){
     RD3 = RD1;
     RD0 = 0;
     RD2 = RD0;
-}
-
-void Servo_1(void){
-
 }

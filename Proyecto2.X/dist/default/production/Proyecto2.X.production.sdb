@@ -17,17 +17,17 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "69 D:\UVG\Ciclo_1__2021\Progra_Micros\Proyecto2_FredyGodoy_19260_PrograMicros\Proyecto2.X\Proyecto2.c
 [v _isr isr `II(v  1 e 1 0 ]
-"146
+"156
 [v _main main `(v  1 e 1 0 ]
-"253
+"260
 [v _Motores Motores `(v  1 e 1 0 ]
-"266
+"273
 [v _Botones Botones `(v  1 e 1 0 ]
-"297
+"304
 [v _Motores_Adelante Motores_Adelante `(v  1 e 1 0 ]
-"303
-[v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
 "310
+[v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
+"317
 [v _Motores_Neutro Motores_Neutro `(v  1 e 1 0 ]
 "59 D:/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -297,44 +297,46 @@
 [v _WD WD `uc  1 e 1 0 ]
 "53
 [v _Contador_Servo1 Contador_Servo1 `uc  1 e 1 0 ]
+"54
+[v _Contador_Servo2 Contador_Servo2 `uc  1 e 1 0 ]
 "55
 [v _Direccion Direccion `uc  1 e 1 0 ]
 "56
 [v _M_Luces M_Luces `uc  1 e 1 0 ]
-"146
+"156
 [v _main main `(v  1 e 1 0 ]
 {
-"252
+"259
+} 0
+"317
+[v _Motores_Neutro Motores_Neutro `(v  1 e 1 0 ]
+{
+"322
 } 0
 "310
-[v _Motores_Neutro Motores_Neutro `(v  1 e 1 0 ]
+[v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
 {
 "315
 } 0
-"303
-[v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
-{
-"308
-} 0
-"297
+"304
 [v _Motores_Adelante Motores_Adelante `(v  1 e 1 0 ]
 {
-"302
+"309
 } 0
-"253
+"260
 [v _Motores Motores `(v  1 e 1 0 ]
 {
-"264
+"271
 } 0
-"266
+"273
 [v _Botones Botones `(v  1 e 1 0 ]
 {
-"295
+"302
 } 0
 "69
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"144
+"154
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c90\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
