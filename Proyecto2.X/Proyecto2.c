@@ -70,7 +70,7 @@ void __interrupt() isr (void){
     // Interrupcion del timer0 - Cada 0.5ms
     if (T0IF == 1){ 
         T0IF = 0;
-        TMR0 = 255; 
+        TMR0 = 245; 
         // Servo 1
         if(Contador_Servo1 <= Direccion){
            RD6 = 1;
@@ -166,7 +166,7 @@ void main(void) {
     T0CS = 0;
     PSA  = 0;
     INTCON = 0b11101000;
-    TMR0 = 255;
+    TMR0 = 253;
     
     // Configuración de Asynchronous TRANSMITTER
     TXEN = 1;
@@ -246,6 +246,7 @@ void main(void) {
     Lock = 1;
     //loop principal
     while(1){  
+        RD4 = 1;
         Motores();
         Botones();
         if (Adelante == 1 && Atras == 0){

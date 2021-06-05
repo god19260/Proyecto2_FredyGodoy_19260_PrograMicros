@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.20\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Proyecto2.X.production.sym \
   --cmf=dist/default/production\Proyecto2.X.production.cmf -z -Q16F887 \
-  -oC:\Users\fredy\AppData\Local\Temp\sg2s.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\fredy\AppData\Local\Temp\s8es.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Proyecto2.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
   -pfunctab=ENTRY -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 \
   -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\fredy\AppData\Local\Temp\sg2s.o \
+  C:\Users\fredy\AppData\Local\Temp\s8es.o \
   dist/default/production\Proyecto2.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\fredy\AppData\Local\Temp\sg2s.o
+C:\Users\fredy\AppData\Local\Temp\s8es.o
                 end_init                             10       10        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -36,15 +36,15 @@ dist/default/production\Proyecto2.X.production.o
                 cinit                                13       13       13        8       0
                 intentry                              4        4        C        8       0
                 config                             2007     2007        2        0       4
-                text8                               23C      23C       67        8       0
-                text7                               317      317       25        8       0
+                text8                               23F      23F       67        8       0
+                text7                               31A      31A       25        8       0
                 text6                                26       26      155        8       0
-                text5                               2A3      2A3       4B        8       0
-                text4                               2EE      2EE       29        8       0
-                text3                               35E      35E       22        8       0
-                text2                               33C      33C       22        8       0
-                text1                               380      380       19        8       0
-                maintext                            17B      17B       C1        8       0
+                text5                               2A6      2A6       4B        8       0
+                text4                               2F1      2F1       29        8       0
+                text3                               361      361       22        8       0
+                text2                               33F      33F       22        8       0
+                text1                               383      383       19        8       0
+                maintext                            17B      17B       C4        8       0
                 cstackBANK0                          2D       2D        6       20       1
                 cstackCOMMON                         70       70        E       70       1
                 bssBANK0                             20       20        D       20       1
@@ -57,15 +57,15 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                13       13       13         0
                 intentry                              4        4        C         0
                 reset_vec                             0        0        3         0
-                text8                               23C      23C       67         0
-                text7                               317      317       25         0
+                text8                               23F      23F       67         0
+                text7                               31A      31A       25         0
                 text6                                26       26      155         0
-                text5                               2A3      2A3       4B         0
-                text4                               2EE      2EE       29         0
-                text3                               35E      35E       22         0
-                text2                               33C      33C       22         0
-                text1                               380      380       19         0
-                maintext                            17B      17B       C1         0
+                text5                               2A6      2A6       4B         0
+                text4                               2F1      2F1       29         0
+                text3                               361      361       22         0
+                text2                               33F      33F       22         0
+                text1                               383      383       19         0
+                maintext                            17B      17B       C4         0
 
         CLASS   STRCODE        
 
@@ -113,7 +113,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  000395  000399         8       0  CODE        2
+                intentry                       000004  000398  00039C         8       0  CODE        2
                 bssBANK0                       000020  000013  000033        20       1  BANK0       1
                 cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
 
@@ -126,12 +126,12 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         0399-1FFF            800
+                         039C-1FFF            800
         CONST            0003-0003              1           2
-                         0399-1FFF            100
+                         039C-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         0399-1FFF            100
+                         039C-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0033-006F             3D           1
                          00A0-00EF             50
@@ -143,9 +143,9 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         0399-1FFF           1C67
+                         039C-1FFF           1C64
         STRING           0003-0003              1           2
-                         0399-1FFF            100
+                         039C-1FFF            100
 
                                   Symbol Table
 
@@ -161,7 +161,7 @@ _Adelante                  bssBANK0     0028
 _Atras                     bssBANK0     0027
 _B_flag                    bssBANK0     0029
 _Boton                     bssBANK0     002A
-_Botones                   text5        02A3
+_Botones                   text5        02A6
 _CCP1CONbits               (abs)        0017
 _CCP2CONbits               (abs)        001D
 _CCPR1L                    (abs)        0015
@@ -184,10 +184,10 @@ _IRCF1                     (abs)        047D
 _IRCF2                     (abs)        047E
 _Lock                      bssBANK0     0026
 _M_Luces                   bssBANK0     0021
-_Motores                   text4        02EE
-_Motores_Adelante          text3        035E
-_Motores_Atras             text2        033C
-_Motores_Neutro            text1        0380
+_Motores                   text4        02F1
+_Motores_Adelante          text3        0361
+_Motores_Atras             text2        033F
+_Motores_Neutro            text1        0383
 _OPTION_REGbits            (abs)        0081
 _PIE1bits                  (abs)        008C
 _PIR1bits                  (abs)        000C
@@ -210,6 +210,7 @@ _RD0                       (abs)        0040
 _RD1                       (abs)        0041
 _RD2                       (abs)        0042
 _RD3                       (abs)        0043
+_RD4                       (abs)        0044
 _RD6                       (abs)        0046
 _RD7                       (abs)        0047
 _SPBRG                     (abs)        0099
@@ -255,7 +256,7 @@ __Hsfr0                    sfr0         0000
 __Hsfr1                    sfr1         0000
 __Hsfr2                    sfr2         0000
 __Hsfr3                    sfr3         0000
-__Hspace_0                 (abs)        0399
+__Hspace_0                 (abs)        039C
 __Hspace_1                 (abs)        007E
 __Hspace_2                 (abs)        0000
 __Hspace_3                 (abs)        0000
@@ -297,11 +298,11 @@ __Lspace_4                 (abs)        0000
 __Lstack                   stack        0000
 __Lstrings                 strings      0000
 __Ltext                    text         0000
-__S0                       (abs)        0399
+__S0                       (abs)        039C
 __S1                       (abs)        007E
 __S2                       (abs)        0000
 __S3                       (abs)        0000
-___awdiv                   text8        023C
+___awdiv                   text8        023F
 ___awdiv@counter           cstackCOMMON 007A
 ___awdiv@dividend          cstackCOMMON 0078
 ___awdiv@divisor           cstackCOMMON 0076
@@ -312,34 +313,34 @@ ___latbits                 (abs)        0002
 ___sp                      stack        0000
 ___stackhi                 (abs)        0000
 ___stacklo                 (abs)        0000
-___wmul                    text7        0317
+___wmul                    text7        031A
 ___wmul@multiplicand       cstackCOMMON 0072
 ___wmul@multiplier         cstackCOMMON 0070
 ___wmul@product            cstackCOMMON 0074
-__end_of_Botones           text5        02EE
-__end_of_Motores           text4        0317
-__end_of_Motores_Adelante  text3        0380
-__end_of_Motores_Atras     text2        035E
-__end_of_Motores_Neutro    text1        0399
-__end_of___awdiv           text8        02A3
-__end_of___wmul            text7        033C
+__end_of_Botones           text5        02F1
+__end_of_Motores           text4        031A
+__end_of_Motores_Adelante  text3        0383
+__end_of_Motores_Atras     text2        0361
+__end_of_Motores_Neutro    text1        039C
+__end_of___awdiv           text8        02A6
+__end_of___wmul            text7        033F
 __end_of__initialization   cinit        0022
 __end_of_isr               text6        017B
-__end_of_main              maintext     023C
+__end_of_main              maintext     023F
 __initialization           cinit        0013
 __pbssBANK0                bssBANK0     0020
 __pcstackBANK0             cstackBANK0  002D
 __pcstackCOMMON            cstackCOMMON 0070
 __pintentry                intentry     0004
 __pmaintext                maintext     017B
-__ptext1                   text1        0380
-__ptext2                   text2        033C
-__ptext3                   text3        035E
-__ptext4                   text4        02EE
-__ptext5                   text5        02A3
+__ptext1                   text1        0383
+__ptext2                   text2        033F
+__ptext3                   text3        0361
+__ptext4                   text4        02F1
+__ptext5                   text5        02A6
 __ptext6                   text6        0026
-__ptext7                   text7        0317
-__ptext8                   text8        023C
+__ptext7                   text7        031A
+__ptext8                   text8        023F
 __size_of_Botones          (abs)        0000
 __size_of_Motores          (abs)        0000
 __size_of_Motores_Adelante (abs)        0000
@@ -404,7 +405,7 @@ Total ram usage:        1 bytes
 
  *************** function _Motores_Neutro *****************
  Defined at:
-		line 317 in file "Proyecto2.c"
+		line 318 in file "Proyecto2.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -434,7 +435,7 @@ Total ram usage:        0 bytes
 
  *************** function _Motores_Atras *****************
  Defined at:
-		line 310 in file "Proyecto2.c"
+		line 311 in file "Proyecto2.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -464,7 +465,7 @@ Total ram usage:        0 bytes
 
  *************** function _Motores_Adelante *****************
  Defined at:
-		line 304 in file "Proyecto2.c"
+		line 305 in file "Proyecto2.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -494,7 +495,7 @@ Total ram usage:        0 bytes
 
  *************** function _Motores *****************
  Defined at:
-		line 260 in file "Proyecto2.c"
+		line 261 in file "Proyecto2.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -524,7 +525,7 @@ Total ram usage:        0 bytes
 
  *************** function _Botones *****************
  Defined at:
-		line 273 in file "Proyecto2.c"
+		line 274 in file "Proyecto2.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -655,23 +656,23 @@ shared
 shared estimated size: 16
 
 Proyecto2.c
-		_Motores       		CODE           	02EE	0000	42
-		_main          		CODE           	017B	0000	194
-		_Motores_Adelante		CODE           	035E	0000	35
-		_Motores_Atras 		CODE           	033C	0000	35
-		_Botones       		CODE           	02A3	0000	76
+		_Motores       		CODE           	02F1	0000	42
+		_main          		CODE           	017B	0000	197
+		_Motores_Adelante		CODE           	0361	0000	35
+		_Motores_Atras 		CODE           	033F	0000	35
+		_Botones       		CODE           	02A6	0000	76
 		_isr           		CODE           	0026	0000	342
-		_Motores_Neutro		CODE           	0380	0000	26
+		_Motores_Neutro		CODE           	0383	0000	26
 
-Proyecto2.c estimated size: 750
+Proyecto2.c estimated size: 753
 
 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c90\common\Umul16.c
-		___wmul        		CODE           	0317	0000	38
+		___wmul        		CODE           	031A	0000	38
 
 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c90\common\Umul16.c estimated size: 38
 
 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c90\common\awdiv.c
-		___awdiv       		CODE           	023C	0000	104
+		___awdiv       		CODE           	023F	0000	104
 
 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c90\common\awdiv.c estimated size: 104
 

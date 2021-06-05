@@ -19,15 +19,15 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "156
 [v _main main `(v  1 e 1 0 ]
-"260
+"261
 [v _Motores Motores `(v  1 e 1 0 ]
-"273
+"274
 [v _Botones Botones `(v  1 e 1 0 ]
-"304
+"305
 [v _Motores_Adelante Motores_Adelante `(v  1 e 1 0 ]
-"310
+"311
 [v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
-"317
+"318
 [v _Motores_Neutro Motores_Neutro `(v  1 e 1 0 ]
 "59 D:/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -265,6 +265,8 @@
 [v _RD2 RD2 `VEb  1 e 0 @66 ]
 "4190
 [v _RD3 RD3 `VEb  1 e 0 @67 ]
+"4193
+[v _RD4 RD4 `VEb  1 e 0 @68 ]
 "4199
 [v _RD6 RD6 `VEb  1 e 0 @70 ]
 "4202
@@ -306,32 +308,32 @@
 "156
 [v _main main `(v  1 e 1 0 ]
 {
-"259
+"260
 } 0
-"317
+"318
 [v _Motores_Neutro Motores_Neutro `(v  1 e 1 0 ]
 {
-"322
+"323
 } 0
-"310
+"311
 [v _Motores_Atras Motores_Atras `(v  1 e 1 0 ]
 {
-"315
+"316
 } 0
-"304
+"305
 [v _Motores_Adelante Motores_Adelante `(v  1 e 1 0 ]
 {
-"309
+"310
 } 0
-"260
+"261
 [v _Motores Motores `(v  1 e 1 0 ]
 {
-"271
+"272
 } 0
-"273
+"274
 [v _Botones Botones `(v  1 e 1 0 ]
 {
-"302
+"303
 } 0
 "69
 [v _isr isr `II(v  1 e 1 0 ]
